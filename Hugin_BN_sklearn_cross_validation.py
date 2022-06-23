@@ -73,14 +73,14 @@ def score_domain(name_model,data_name,name_class,nb_folds=10):
               
                 domain.propagate()                           
                 L_predict[i]=np.argmax([node_class.get_belief(i) for i in range(node_class.get_number_of_states())])              
-                domain.reset_inference_engine()
+                domain.initialize() 
           
             print(L_predict, L_true)
    
             Accuracy=Accuracy+sum(L_predict==L_true)/len(L_predict)
    
         
-            domain.initialize()    
+               
             domain.uncompile()
             domain.set_number_of_cases(0)
             
