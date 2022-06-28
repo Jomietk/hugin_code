@@ -32,11 +32,11 @@ def score_domain(name_model,data_name,name_class,nb_folds=10):
         Accuracy=0 
         
         
-        #Stratified shuffle spli cross validation    
+        #Stratified shuffle split cross validation    
         cv = StratifiedShuffleSplit(n_splits=nb_folds, test_size=0.2, random_state=42)          
         for train_index, test_index in cv.split(X, y_sat): 
            
-            #Set the same prior distribution foe each fold
+            #Set the same prior distribution for each fold
             for i in range(len(L_nodes)):
                  L_nodes[i].get_table().set_data(L_ini[i])     
          
@@ -88,8 +88,9 @@ def score_domain(name_model,data_name,name_class,nb_folds=10):
             
             
             
-        #Delet the model for memory 
+        #Delet the model and data for memory 
         domain.delete()
+        data.delete()
         
 
         Accuracy=Accuracy/nb_folds
